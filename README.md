@@ -2,6 +2,10 @@
 
 A Scrapy-based web scraper that extracts case information and complete case history from the Indian eCourts portal.
 
+## GitHub Repository
+
+https://github.com/Zuhaibkhank/ecourt-case-information-scraper
+
 ## Features
 
 - Fetches case details using Case Number
