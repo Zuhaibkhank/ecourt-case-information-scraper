@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+
+captcha.jpg
+output.json
+
+case_response.html
+history_response.html
+captcha_response.html
+ecourt_home.html
