@@ -127,9 +127,13 @@ pip install -r requirements.txt
 
 ## Running the Scraper
 
-```bash
-scrapy crawl e_court_case_information
-```
+Running with Spider Arguments
+
+Example:
+
+scrapy crawl e_court_case_information -a cases='[{"type":"MACT","type_code":"12^1","number":"1760","year":"2016","state_name":"Delhi","state_code":"26","district_name":"Shahdara","district_code":"2","court_complex_name":"Karkardooma Court Complex","court_complex_code":"1260002","establishment_name":"District and Sessions Judge, Shahdara, KKD","establishment_code":"1"}]'
+
+The spider also supports multiple cases in the cases argument.
 
 ---
 
