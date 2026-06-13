@@ -97,25 +97,24 @@ class ECourtCaseInformationSpider(scrapy.Spider):
         yield scrapy.FormRequest(
         url="https://services.ecourts.gov.in/ecourtindia_v6/?p=casestatus/submitCaseNo",
         formdata={
-            "state_code": case_data["state_code"],
-            "dist_code": case_data["district_code"],
-            "court_complex_code": case_data["court_complex_code"],
-            "est_code": case_data["establishment_code"],
-            "case_type": case_data["type_code"],
-            "search_case_no": case_data["number"],
-            "case_no": case_data["number"],
-            "rgyear": case_data["year"],
-            "case_captcha_code": captcha,
+            "state_code": str(case_data["state_code"]),
+            "dist_code": str(case_data["district_code"]),
+            "court_complex_code": str(case_data["court_complex_code"]),
+            "est_code": str(case_data["establishment_code"]),
+            "case_type": str(case_data["type_code"]),
+            "search_case_no": str(case_data["number"]),
+            "case_no": str(case_data["number"]),
+            "rgyear": str(case_data["year"]),
+            "case_captcha_code": str(captcha),
             "ajax_req": "true",
             "app_token": ""
-        },
+        },          
         callback=self.parse_case,
         meta={
             "case_data": case_data,
             "case_index": case_index
         },
         dont_filter=True
-
     )
 
 
@@ -158,11 +157,24 @@ class ECourtCaseInformationSpider(scrapy.Spider):
 
     def parse_case(self, response):
 
+
+        print("="*100)
+        print(response.text[:5000])
+        print("="*100)
+
+        with open("case_response.html", "w", encoding="utf-8") as f:
+            f.write(response.text)
+
+
         data = json.loads(response.text)
 
         case_index = response.meta["case_index"]
 
         html = data.get("case_data", "")
+
+        print("HTML LENGTH:", len(html))
+        print(html[:3000])
+    
 
         match = re.search(
             r"viewHistory\((.*?)\)",
